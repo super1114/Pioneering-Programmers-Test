@@ -11,15 +11,17 @@ import * as themeCss from "../theme.css";
 import 'react-tooltip/dist/react-tooltip.css'
 
 import ThemeContext from "../contexts/themeContext";
+import { useNavigate } from "react-router-dom";
 
 function Sidebar() {
+  const navigate = useNavigate();
   const themeCtx = useContext(ThemeContext);
   const scheme = themeCtx.isDark() ? themeCss.dark : themeCss.light;
   const { isCollapsed, switchCollapse } = useCollapse();
 
-  const navigate = (url: string) => {
-    window.open(url);
-  }
+  //const navigate = (url: string) => {
+    //window.location.href = url;
+  //}
 
   return (
     <div className={`${scheme} ${css.index} ${isCollapsed() ? css.collapsed_y : css.collapsed_n}`}>

@@ -1,6 +1,7 @@
 
 import {
   createBrowserRouter,
+  Outlet,
   RouterProvider,
 } from "react-router-dom";
 
@@ -14,8 +15,19 @@ import * as css from './App.css';
 
 import ThemeProvider from "./providers/themeProvider";
 
+const Layout = () => {
+  return <div className={css.layout}>
+    <Header />
+    <div className={css.content}>
+      <Sidebar />
+      <Outlet />
+    </div>
+  </div>
+}
+
 const router = createBrowserRouter([
   {
+    element: <Layout />,
     children: [
       {
         path: "/",
@@ -36,13 +48,7 @@ const router = createBrowserRouter([
 function App() {
   return (
     <ThemeProvider>
-      <div className={css.layout}>
-        <Header />
-        <div className={css.content}>
-          <Sidebar />
-          <RouterProvider router={router} />
-        </div>
-      </div>
+        <RouterProvider router={router} />
     </ThemeProvider>
   );
 }
